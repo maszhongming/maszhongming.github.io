@@ -1,0 +1,8 @@
+@article{Yu.17,
+  author    = {Tao Yu and Christopher Hidey and Owen Rambow and Kathleen R. McKeown},
+  title     = {Leveraging Sparse and Dense Feature Combinations for Sentiment Classification},
+  journal   = {CoRR},
+  volume    = {abs/1708.03940},
+  year      = {2017},
+  url       = {http://arxiv.org/abs/1708.03940},
+}

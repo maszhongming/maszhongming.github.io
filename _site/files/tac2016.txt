@@ -1,0 +1,6 @@
+@inproceedings{Rambow2016TheCS,
+  title={The Columbia-GWU System at the 2016 TAC KBP BeSt Evaluation},
+  author={Owen Rambow and Tao Yu and Axinia Radeva and Alexander Richard Fabbri and Christopher Hidey and Tianrui Peng and Kathleen McKeown and Smaranda Muresan and Sardar Hamidian and Mona T. Diab and Debanjan Ghosh},
+  booktitle={TAC},
+  year={2016}
+}
