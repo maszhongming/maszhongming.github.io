@@ -79,11 +79,11 @@ td {          /* for table */
     width: 180px;
     border-radius: 50%;
     background-image: url(../../images/MingZhong_pic.jpg);
-    background-position: -65px;
+    background-position: -130px;
     background-size: 250px;
     background-repeat: no-repeat;
     border: 3px white solid;
-    margin-left: 0px;
+    margin-left: 150px;
     margin-top: 10px;
     margin-bottom: auto;
     vertical-align: middle;
