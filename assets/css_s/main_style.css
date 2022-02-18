@@ -75,11 +75,11 @@ td {          /* for table */
 }
 
 #author-avatar {
-    height: 180px;
-    width: 180px;
+    height: 90px;
+    width: 90px;
     border-radius: 50%;
     background-image: url(../../images/MingZhong.jpg);
-    background-position: -15px;
+    background-position: -35px;
     background-size: 250px;
     background-repeat: no-repeat;
     border: 3px white solid;
