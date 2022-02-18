@@ -77,7 +77,7 @@ td {          /* for table */
 #author-avatar {
     height: 180px;
     width: 180px;
-    border-radius: 100%;
+    border-radius: 10%;
     background-image: url(../../images/MingZhong.jpg);
     background-position: -35px;
     background-size: 250px;
