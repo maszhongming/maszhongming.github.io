@@ -1,15 +1,209 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
-  <meta name="description" content="Final-year PhD Candidate in Computer Science at UIUC working on Large Language Models and AI Agents.">
-  <title>Ming Zhong - UIUC</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Ming Zhong, Research Scientist at Google DeepMind and PhD candidate at UIUC, working on long-horizon agents and frontier evaluation.">
+  <title>Ming Zhong</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap">
+
+<style>
+/* Layout: a quiet two-column page. Identity sits in a sticky left rail, reading flows on the right; stacks to one column on phones. */
+:root {
+  --bg: #fbfcfd;
+  --surface: #ffffff;
+  --ink: #182131;
+  --muted: #556074;
+  --line: #e3e7ed;
+  --accent: #2b63ad;
+  --accent-soft: rgba(43, 99, 173, 0.08);
+  --ring: rgba(43, 99, 173, 0.32);
+  --wash-a: rgba(43, 99, 173, 0.13);
+  --wash-b: rgba(24, 150, 160, 0.08);
+  --award: #c2335b;
+  /* one hue per link type, mixed into soft chips */
+  --c-paper: #d6553f;
+  --c-code: #7457d6;
+  --c-data: #d4920f;
+  --c-blog: #18a07a;
+  --c-project: #2f80d0;
+  --chip-tint: 3%; --chip-tint-hover: 10%;
+  --chip-edge: 24%; --chip-edge-hover: 48%;
+  --chip-text: 68%;
+  --brand-scholar: #4285f4; --brand-github: #181717; --brand-x: #0f1419; --brand-linkedin: #0a66c2;
+  --font-display: "Newsreader", "Iowan Old Style", Georgia, serif;
+  --font-body: "Hanken Grotesk", "Helvetica Neue", Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f1419; --surface: #161c23; --ink: #e7eaf0; --muted: #9ca7b6;
+    --line: #252d37; --accent: #8cb8f2; --accent-soft: rgba(140, 184, 242, 0.10);
+    --ring: rgba(140, 184, 242, 0.38); --wash-a: rgba(80, 140, 230, 0.14);
+    --wash-b: rgba(40, 170, 180, 0.07); --award: #ff8fab;
+    --c-paper: #ff8f7a; --c-code: #ad95ff; --c-data: #f0c050; --c-blog: #52d3a8;
+    --c-project: #72b4ff; --chip-tint: 5%; --chip-tint-hover: 15%;
+    --chip-edge: 32%; --chip-edge-hover: 58%; --chip-text: 72%;
+    --brand-scholar: #8ab4f8; --brand-github: #e7eaf0; --brand-x: #e7eaf0; --brand-linkedin: #70b5f9;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f1419; --surface: #161c23; --ink: #e7eaf0; --muted: #9ca7b6;
+  --line: #252d37; --accent: #8cb8f2; --accent-soft: rgba(140, 184, 242, 0.10);
+  --ring: rgba(140, 184, 242, 0.38); --wash-a: rgba(80, 140, 230, 0.14);
+  --wash-b: rgba(40, 170, 180, 0.07); --award: #ff8fab;
+  --c-paper: #ff8f7a; --c-code: #ad95ff; --c-data: #f0c050; --c-blog: #52d3a8;
+  --c-project: #72b4ff; --chip-tint: 5%; --chip-tint-hover: 15%;
+  --chip-edge: 32%; --chip-edge-hover: 58%; --chip-text: 72%;
+    --brand-scholar: #8ab4f8; --brand-github: #e7eaf0; --brand-x: #e7eaf0; --brand-linkedin: #70b5f9;
+    color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background:
+    radial-gradient(900px 520px at -6% -12%, var(--wash-a), transparent 66%),
+    radial-gradient(760px 440px at 106% -8%, var(--wash-b), transparent 62%),
+    var(--bg);
+  background-repeat: no-repeat;
+  color: var(--ink);
+  font: 400 16.5px/1.65 var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; text-underline-offset: 3px; }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+b { font-weight: 650; color: var(--ink); }
+
+.page {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding-block: 72px 56px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr);
+  gap: 72px;
+}
+
+/* ---- identity rail */
+.rail { align-self: start; display: grid; gap: 20px; }
+/* stick only when the whole rail fits on screen */
+@media (min-width: 861px) and (min-height: 720px) { .rail { position: sticky; top: 72px; } }
+.portrait {
+  width: 180px; height: 180px; border-radius: 50%;
+  background: url("images/Ming_photo.jpg") 53% 39% / 162% no-repeat;
+  box-shadow: 0 0 0 5px var(--surface), 0 0 0 6px var(--ring);
+}
+.name {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 2.6rem;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  margin: 8px 0 0;
+}
+.roles { margin: 0; color: var(--muted); font-size: 0.95rem; line-height: 1.55; }
+.contact {
+  list-style: none; margin: 4px 0 0; padding: 16px 0 0;
+  border-top: 1px solid var(--line);
+  display: grid; gap: 2px;
+}
+.contact .row {
+  display: flex; align-items: center; gap: 12px;
+  padding: 7px 10px; margin: 0 -10px; border-radius: 10px;
+  color: var(--ink); font-size: 0.92rem; line-height: 1.3;
+  transition: background .2s, color .2s;
+}
+.contact .ic { width: 17px; height: 17px; flex: none; color: var(--brand, var(--muted)); }
+.contact a.row:hover { background: var(--accent-soft); color: var(--accent); text-decoration: none; }
+.s-googlescholar { --brand: var(--brand-scholar); }
+.s-github { --brand: var(--brand-github); }
+.s-x { --brand: var(--brand-x); }
+.s-linkedin { --brand: var(--brand-linkedin); }
+.contact .email { color: var(--muted); user-select: all; }
+
+/* ---- reading column */
+main { display: grid; gap: 56px; min-width: 0; }
+.section-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--ink);
+  margin: 0 0 18px;
+  display: flex; align-items: center; gap: 16px;
+}
+.section-title::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+/* full column width, justified on desktop, so the bio ends where the rules and paper list end */
+.prose p { margin: 0 0 14px; }
+@media (min-width: 861px) { .prose p { text-align: justify; hyphens: auto; } }
+.prose p:last-child { margin-bottom: 0; }
+
+.papers { list-style: none; margin: 0; padding: 0; display: grid; }
+.paper {
+  display: grid; grid-template-columns: 124px minmax(0, 1fr); gap: 24px;
+  padding: 22px 0; border-top: 1px solid var(--line);
+}
+.paper:first-child { border-top: 0; padding-top: 4px; }
+.venue {
+  display: grid; gap: 3px; align-content: start; padding-top: 4px;
+  font-size: 0.82rem; line-height: 1.35;
+}
+.venue-name { color: var(--accent); font-weight: 600; }
+.track { color: var(--muted); font-size: 0.76rem; text-wrap: balance; }
+.award { color: var(--award); font-weight: 600; font-size: 0.76rem; text-wrap: balance; }
+.paper-title {
+  font-family: var(--font-display); font-size: 1.22rem; line-height: 1.35;
+  font-weight: 500; color: var(--ink); text-wrap: balance; display: block;
+}
+.paper-title:hover { color: var(--accent); text-decoration: none; }
+.authors { margin: 6px 0 12px; color: var(--muted); font-size: 0.9rem; line-height: 1.55; }
+.links { display: flex; flex-wrap: wrap; gap: 8px; }
+.pill {
+  --c: var(--accent);
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 0.8rem; font-weight: 500; line-height: 1;
+  padding: 6px 11px 6px 9px; border-radius: 999px;
+  color: var(--muted); background: var(--surface); border: 1px solid var(--line);
+  background: color-mix(in srgb, var(--c) var(--chip-tint), var(--surface));
+  border-color: color-mix(in srgb, var(--c) var(--chip-edge), var(--surface));
+  transition: color .2s, border-color .2s, background .2s;
+}
+.pill .ic { width: 13px; height: 13px; color: var(--c); }
+.pill:hover {
+  color: color-mix(in srgb, var(--c) var(--chip-text), var(--ink));
+  background: color-mix(in srgb, var(--c) var(--chip-tint-hover), var(--surface));
+  border-color: color-mix(in srgb, var(--c) var(--chip-edge-hover), var(--surface));
+  text-decoration: none;
+}
+.t-paper { --c: var(--c-paper); }
+.t-code { --c: var(--c-code); }
+.t-data { --c: var(--c-data); }
+.t-blog { --c: var(--c-blog); }
+.t-project { --c: var(--c-project); }
+.more { margin: 20px 0 0; font-size: 0.92rem; color: var(--muted); }
+.note { font-size: 0.85rem; color: var(--muted); margin: 0 0 4px; }
+
+footer { grid-column: 2; color: var(--muted); font-size: 0.82rem; }
+
+@media (max-width: 860px) {
+  .page { grid-template-columns: minmax(0, 1fr); gap: 48px; padding-block: 40px 40px; }
+  .rail { justify-items: center; text-align: center; }
+  .contact { justify-self: stretch; display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 6px; }
+  .contact .row { margin: 0; }
+  footer { grid-column: 1; }
+}
+@media (max-width: 520px) {
+  .paper { grid-template-columns: minmax(0, 1fr); gap: 6px; }
+  .venue { display: flex; flex-wrap: wrap; column-gap: 10px; padding-top: 0; }
+  .name { font-size: 2.2rem; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
   <link rel="shortcut icon" href="images/tree-12c-194370/tree-12c-152-194370.png" />
-  <link href='assets/css_s/bootstrap.min.css' rel='stylesheet'>
-  <link href='assets/css_s/main_style.css' rel='stylesheet'>
-
-  <link href='https://fonts.googleapis.com/css?family=Nunito:200,300,400,500,600,700,800,900,100italic,100,300italic,400italic,500italic,900italic,700italic' rel='stylesheet' type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=Lato:200,300,400,500,600,700,800,900,100italic,100,300italic,400italic,500italic,900italic,700italic' rel='stylesheet' type='text/css'>
-
   <!-- Global Site Tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-100825544-1"></script>
   <script>
@@ -21,442 +215,94 @@
   </script>
 </head>
 <body>
-  <div id='header' class ='bg'>
-    <div id='header-inner'>
-      <div id="author-avatar"></div>
-      <div class='header-text'>
-        <div class='header-text-name'>
-            Ming Zhong <span style="font-family:STFangsong; font-size:24pt"> (钟鸣) </span>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="i-arxiv" viewBox="0 0 24 24" fill="currentColor"><path d="M3.8423 0a1.0037 1.0037 0 0 0-.922.6078c-.1536.3687-.0438.6275.2938 1.1113l6.9185 8.3597-1.0223 1.1058a1.0393 1.0393 0 0 0 .003 1.4229l1.2292 1.3135-5.4391 6.4444c-.2803.299-.4538.823-.2971 1.1986a1.0253 1.0253 0 0 0 .9585.635.9133.9133 0 0 0 .6891-.3405l5.783-6.126 7.4902 8.0051a.8527.8527 0 0 0 .6835.2597.9575.9575 0 0 0 .8777-.6138c.1577-.377-.017-.7502-.306-1.1407l-7.0518-8.3418 1.0632-1.13a.9626.9626 0 0 0 .0089-1.3165L4.6336.4639s-.3733-.4535-.768-.463zm0 .272h.0166c.2179.0052.4874.2715.5644.3639l.005.006.0052.0055 10.169 10.9905a.6915.6915 0 0 1-.0072.945l-1.0666 1.133-1.4982-1.7724-8.5994-10.39c-.3286-.472-.352-.6183-.2592-.841a.7307.7307 0 0 1 .6704-.4401Zm14.341 1.5701a.877.877 0 0 0-.6554.2418l-5.6962 6.1584 1.6944 1.8319 5.3089-6.5138c.3251-.4335.479-.6603.3247-1.0292a1.1205 1.1205 0 0 0-.9763-.689zm-7.6557 12.2823 1.3186 1.4135-5.7864 6.1295a.6494.6494 0 0 1-.4959.26.7516.7516 0 0 1-.706-.4669c-.1119-.2682.0359-.6864.2442-.9083l.0051-.0055.0047-.0055z"/></symbol><symbol id="i-code-xml" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="m18 16 4-4-4-4" /> <path d="m6 8-4 4 4 4" /> <path d="m14.5 4-5 16" /></symbol><symbol id="i-database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3" /> <path d="M3 5V19A9 3 0 0 0 21 19V5" /> <path d="M3 12A9 3 0 0 0 21 12" /></symbol><symbol id="i-file-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" /> <path d="M14 2v4a2 2 0 0 0 2 2h4" /> <path d="M10 9H8" /> <path d="M16 13H8" /> <path d="M16 17H8" /></symbol><symbol id="i-github" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></symbol><symbol id="i-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" /> <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" /> <path d="M2 12h20" /></symbol><symbol id="i-googlescholar" viewBox="0 0 24 24" fill="currentColor"><path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/></symbol><symbol id="i-huggingface" viewBox="0 0 24 24" fill="currentColor"><path d="M1.4446 11.5059c0 1.1021.1673 2.1585.4847 3.1563-.0378-.0028-.0691-.0058-.1058-.0058-.4209 0-.8015.16-1.0704.4512-.3454.3737-.4984.8335-.4316 1.293a1.576 1.576 0 0 0 .2148.5978c-.2319.1864-.4018.4456-.4844.7578-.0646.2448-.131.7543.2149 1.2794a1.4552 1.4552 0 0 0-.0625.1055c-.208.3923-.2207.8372-.0371 1.25.2783.6258.9696 1.1175 2.3126 1.6467.8356.3292 1.5988.5411 1.6056.543 1.1046.2847 2.104.4277 2.969.4277 1.4173 0 2.4754-.3849 3.1525-1.1446 1.538.2651 2.791.1403 3.592.006.6773.7555 1.7332 1.1387 3.1467 1.1387.8649 0 1.8643-.143 2.969-.4278.0068-.0019.77-.2138 1.6056-.543 1.343-.5292 2.0343-1.0208 2.3126-1.6466.1836-.4129.171-.8577-.037-1.25a1.4685 1.4685 0 0 0-.0626-.1056c.346-.525.2795-1.0346.2149-1.2793-.0826-.3122-.2525-.5714-.4844-.7579.11-.1816.1831-.3788.2148-.5977.0669-.4595-.0862-.9193-.4316-1.293-.2688-.2913-.6495-.4513-1.0704-.4513-.0209 0-.0376.0008-.0588.0018.3162-.9966.4846-2.0518.4846-3.1523 0-5.807-4.7362-10.5144-10.5789-10.5144-5.8426 0-10.5788 4.7073-10.5788 10.5144Zm10.5788-9.4831c5.2727 0 9.5476 4.246 9.5476 9.483a9.4201 9.4201 0 0 1-.2696 2.2365c-.0039-.0047-.0079-.011-.0117-.0156-.274-.3255-.6679-.5059-1.1075-.5059-.352 0-.714.1155-1.0763.3438-.2403.1517-.5058.422-.7793.7598-.2534-.3492-.608-.5832-1.0137-.6465a1.5174 1.5174 0 0 0-.2344-.0176c-.9263 0-1.4828.7993-1.6935 1.5177-.1046.2426-.6065 1.3482-1.3614 2.0978-1.1681 1.1601-1.4458 2.3534-.8396 3.6382-.843.1029-1.5836.0927-2.365-.006.5906-1.212.3626-2.4388-.8426-3.6322-.755-.7496-1.2568-1.8552-1.3614-2.0978-.2107-.7184-.7673-1.5177-1.6935-1.5177-.078 0-.1568.0054-.2344.0176-.4057.0633-.7604.2973-1.0137.6465-.2735-.3379-.539-.6081-.7794-.7598-.3622-.2283-.7243-.3438-1.0762-.3438-.4266 0-.8094.171-1.0821.4786a9.4208 9.4208 0 0 1-.2598-2.1936c0-5.237 4.2749-9.483 9.5475-9.483zM8.6443 7.0036c-.4838.0043-.9503.2667-1.1934.7227-.3536.6633-.1006 1.4873.5645 1.84.351.1862.4883-.5261.836-.6485.3107-.1095.841.399 1.0078.086.3536-.6634.1025-1.4874-.5625-1.84a1.3659 1.3659 0 0 0-.6524-.1602Zm6.8403 0c-.2199-.002-.4426.05-.6504.1602-.665.3526-.9181 1.1766-.5645 1.84.1669.313.6971-.1955 1.0079-.086.3476.1224.4867.8347.838.6485.6649-.3527.916-1.1767.5624-1.84-.243-.456-.7096-.7184-1.1934-.7227Zm-9.7565 1.418a.8768.8768 0 0 0-.877.877c0 .4846.3925.877.877.877a.8768.8768 0 0 0 .877-.877.8768.8768 0 0 0-.877-.877zm12.6434 0c-.4845 0-.879.3925-.879.877 0 .4846.3945.877.879.877a.8768.8768 0 0 0 .877-.877.8768.8768 0 0 0-.877-.877zM8.7927 11.459c-.179-.003-.2793.1107-.2793.416 0 .8097.3874 2.125 1.4279 2.924.207-.7123 1.3453-1.2832 1.5079-1.2012.2315.1167.2191.4417.6074.7266.3884-.285.374-.6098.6056-.7266.1627-.082 1.3009.4889 1.5079 1.2012 1.0404-.799 1.4278-2.1144 1.4278-2.924 0-1.2212-1.583.6402-3.5413.6485-1.4686-.0061-2.7266-1.0558-3.2639-1.0645zM4.312 14.4768c.5792.365 1.6964 2.2751 2.1056 3.0177.1371.2488.371.3536.582.3536.4188 0 .7465-.4138.0391-.9395-1.0636-.791-.6914-2.0846-.1836-2.1642a.4302.4302 0 0 1 .0664-.004c.4616 0 .666.7892.666.7892s.5959 1.4898 1.6213 2.508c.942.9356 1.062 1.703.4961 2.6661-.0164-.004-.0159.0236-.1484.2149-.1853.2673-.4322.4688-.7188.6152-.5062.2269-1.1397.2696-1.7833.2696-1.037 0-2.1017-.1824-2.6975-.336-.0293-.0075-3.6505-.9567-3.1916-1.8224.0771-.1454.2033-.2031.3633-.2031.6463 0 1.823.9551 2.3283.9551.113 0 .196-.0865.2285-.2031.2249-.8045-3.2787-1.0522-2.9846-2.1642.0519-.1967.193-.2757.3907-.2754.854 0 2.7704 1.4923 3.172 1.4923.0307 0 .0525-.0085.0645-.0274.2012-.3227.1096-.5865-1.3087-1.4395-1.4182-.8533-2.4315-1.329-1.8653-1.9416.0651-.0707.1574-.1015.2695-.1015.8611.0002 2.8948 1.84 2.8948 1.84s.5487.5683.8809.5683c.0762 0 .1416-.0315.1855-.1054.2355-.3946-2.1858-2.2183-2.3224-2.971-.0926-.51.0641-.7676.3555-.7676-.0006.008.1701-.0285.4942.1759zm16.2257.5918c-.1366.7526-2.5579 2.5764-2.3224 2.9709.044.074.1092.1055.1855.1055.3321 0 .881-.5684.881-.5684s2.0336-1.8397 2.8947-1.84c.1121 0 .2044.0308.2695.1016.5662.6125-.447 1.0882-1.8653 1.9415-1.4183.853-1.51 1.1168-1.3087 1.4396.012.0188.0337.0273.0644.0273.4016 0 2.3181-1.4923 3.1721-1.4923.1977-.0002.3388.0787.3907.2754.294 1.112-3.2095 1.3597-2.9846 2.1642.0325.1166.1156.2032.2285.2032.5054 0 1.682-.9552 2.3283-.9552.16 0 .2862.0577.3633.2032.459.8656-3.1623 1.8149-3.1916 1.8224-.5958.1535-1.6605.336-2.6975.336-.6351 0-1.261-.0409-1.7638-.2599-.2949-.1472-.5488-.3516-.7383-.625-.0411-.0682-.1026-.1476-.1426-.205-.5726-.9679-.455-1.7371.4903-2.676 1.0254-1.0182 1.6212-2.508 1.6212-2.508s.2044-.7891.666-.7891a.4318.4318 0 0 1 .0665.0039c.5078.0796.88 1.3732-.1836 2.1642-.7074.5257-.3797.9395.039.9395.211 0 .445-.1047.5821-.3535.4092-.7426 1.5264-2.6527 2.1056-3.0178.5588-.3524.99-.1816.8497.5918z"/></symbol><symbol id="i-linkedin" viewBox="0 0 448 512" fill="currentColor"><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></symbol><symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2" /> <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" /></symbol><symbol id="i-pen-line" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9" /> <path d="M16.376 3.622a1 1 0 0 1 3.002 3.002L7.368 18.635a2 2 0 0 1-.855.506l-2.872.838a.5.5 0 0 1-.62-.62l.838-2.872a2 2 0 0 1 .506-.854z" /></symbol><symbol id="i-x" viewBox="0 0 24 24" fill="currentColor"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></symbol></svg>
+<div class="page">
+  <aside class="rail">
+    <div class="portrait" role="img" aria-label="Photo of Ming Zhong"></div>
+    <h1 class="name">Ming Zhong</h1>
+    <p class="roles">Research Scientist, Google DeepMind<br>
+      PhD Candidate, Computer Science, UIUC</p>
+    <ul class="contact">
+      <li><span class="row"><svg class="ic" aria-hidden="true"><use href="#i-mail"></use></svg><span class="email">mingz5 [at] illinois.edu</span></span></li>
+      <li><a class="row s-googlescholar" href="https://scholar.google.com/citations?user=mnifqeUAAAAJ&hl=en"><svg class="ic" aria-hidden="true"><use href="#i-googlescholar"></use></svg><span>Google Scholar</span></a></li><li><a class="row s-github" href="https://github.com/maszhongming"><svg class="ic" aria-hidden="true"><use href="#i-github"></use></svg><span>GitHub</span></a></li><li><a class="row s-x" href="https://twitter.com/MingZhong_"><svg class="ic" aria-hidden="true"><use href="#i-x"></use></svg><span>X (Twitter)</span></a></li><li><a class="row s-linkedin" href="https://www.linkedin.com/in/ming-zhong-6ab37b248"><svg class="ic" aria-hidden="true"><use href="#i-linkedin"></use></svg><span>LinkedIn</span></a></li>
+    </ul>
+  </aside>
+
+  <main>
+    <section class="prose">
+      <h2 class="section-title">About</h2>
+      <p>I am a Research Scientist at Google DeepMind and a final-year PhD candidate at UIUC, where I am fortunate to be advised by Prof. <a href="http://hanj.cs.illinois.edu/">Jiawei Han</a>. My research focuses on long-horizon agents and frontier evaluation. Recently, I have been most excited about agentic self-improvement.</p>
+      <p>During my PhD, I was a <a href="https://alignment.anthropic.com/2024/anthropic-fellows-program/">Research Fellow</a> at Anthropic and interned at Google DeepMind, the Llama 3 post-training team at Meta, Microsoft Azure AI, and Microsoft Research. I also received the <a href="https://siebelschool.illinois.edu/news/Amazon-names-Huang-Zhong-inagural-fellows-AICE-research">Amazon PhD Fellowship</a>.</p>
+    </section>
+
+    <section>
+      <h2 class="section-title">Selected Publications</h2>
+      <p class="note">* equal contribution</p>
+      <ul class="papers">
+      <li class="paper">
+        <div class="venue"><span class="venue-name">NeurIPS 2026</span><span class="track">Evaluations &amp; Datasets Track</span></div>
+        <div class="paper-body">
+          <a class="paper-title" href="https://arxiv.org/abs/2610.28763">Automating ML for Science: Can Frontier Agents Climb Scientific Hills in the Wild?</a>
+          <p class="authors"><b>Ming Zhong</b>*, Stacy Li*, Nicholas Carlini, Matthew Jagielski</p>
+          <div class="links"><a class="pill t-paper" href="https://arxiv.org/abs/2610.28763"><svg class="ic" aria-hidden="true"><use href="#i-file-text"></use></svg><span>Paper</span></a><a class="pill t-code" href="https://github.com/maszhongming/agent4sci"><svg class="ic" aria-hidden="true"><use href="#i-github"></use></svg><span>Code</span></a><a class="pill t-data" href="https://huggingface.co/datasets/MingZhong/agent4sci"><svg class="ic" aria-hidden="true"><use href="#i-huggingface"></use></svg><span>Data</span></a><a class="pill t-blog" href="https://docs.google.com/document/d/1CQ4rETqN5odZHG9JVZFMNpkB2guhkaT-/edit?usp=sharing&ouid=103068526727574930835&rtpof=true&sd=true"><svg class="ic" aria-hidden="true"><use href="#i-pen-line"></use></svg><span>Blog</span></a></div>
         </div>
-        <div class='header-text-email'>
-          <p>PhD Student</p>
-          <p>Computer Science Department, UIUC</p>
-          <p>mingz5 [at] illinois.edu</p>
+      </li>
+      <li class="paper">
+        <div class="venue"><span class="venue-name">ICML 2026</span></div>
+        <div class="paper-body">
+          <a class="paper-title" href="https://arxiv.org/abs/2510.07315">SWE-IF: Aligning Code Evaluation with Human Preference</a>
+          <p class="authors"><b>Ming Zhong</b>, Xiang Zhou, Ting-Yun Chang, Qingze Wang, Nan Xu, Xiance Si, Dan Garrette, Shyam Upadhyay, Jeremiah Liu, Jiawei Han, Benoit Schillings, Jiao Sun</p>
+          <div class="links"><a class="pill t-paper" href="https://arxiv.org/abs/2510.07315"><svg class="ic" aria-hidden="true"><use href="#i-file-text"></use></svg><span>Paper</span></a><a class="pill t-code" href="https://github.com/maszhongming/SWE-IF"><svg class="ic" aria-hidden="true"><use href="#i-github"></use></svg><span>Code</span></a><a class="pill t-data" href="https://huggingface.co/datasets/MingZhong/SWE-IF"><svg class="ic" aria-hidden="true"><use href="#i-huggingface"></use></svg><span>Data</span></a></div>
         </div>
-
-        <div class='header-text-items'>
-          <ul class="icons">
-            <!-- <li><a href="files/tao_yu_cv.pdf" class="icon fa-file-pdf-o"><span class="label"></span></a></li> -->
-            <li><a href="https://github.com/maszhongming" class="icon fa-github"><span class="label"></span></a></li>
-            <li><a href="https://twitter.com/MingZhong_" class="icon fa-twitter"><span class="label"></span></a></li>
-	    <li><a href="https://www.linkedin.com/in/ming-zhong-6ab37b248" class="fa-brands fa-linkedin"><span class="label"></span></a></li>
-            <li><a href="https://scholar.google.com/citations?user=mnifqeUAAAAJ&hl=en" class="icon ai-google-scholar"><span class="label"></span></a></li>
-          </ul>
+      </li>
+      <li class="paper">
+        <div class="venue"><span class="venue-name">ICLR 2025</span></div>
+        <div class="paper-body">
+          <a class="paper-title" href="https://arxiv.org/abs/2409.19951">Law of the Weakest Link: Cross Capabilities of Large Language Models</a>
+          <p class="authors"><b>Ming Zhong</b>*, Aston Zhang*, Xuewei Wang, Rui Hou, Wenhan Xiong, Chenguang Zhu, Zhengxing Chen, Liang Tan, Chloe Bi, Mike Lewis, Sravya Popuri, Sharan Narang, Melanie Kambadur, Dhruv Mahajan, Sergey Edunov, Jiawei Han, Laurens van der Maaten</p>
+          <div class="links"><a class="pill t-paper" href="https://arxiv.org/abs/2409.19951"><svg class="ic" aria-hidden="true"><use href="#i-file-text"></use></svg><span>Paper</span></a><a class="pill t-code" href="https://github.com/facebookresearch/llm-cross-capabilities"><svg class="ic" aria-hidden="true"><use href="#i-github"></use></svg><span>Code</span></a><a class="pill t-data" href="https://huggingface.co/datasets/MingZhong/crosseval"><svg class="ic" aria-hidden="true"><use href="#i-huggingface"></use></svg><span>Data</span></a><a class="pill t-project" href="https://www.llm-cross-capabilities.org/"><svg class="ic" aria-hidden="true"><use href="#i-globe"></use></svg><span>Project</span></a></div>
         </div>
-      </div>
-    </div>
-  </div>
-
-  <div class='container'>
-    <div class='col-xs-1'>
-    </div>
-    <div class='col-xs-10'>
-      <div class='row'>
-        <p>
-        Thank you for visiting my website!
-        </p>
-        <p>
-		I am a final-year PhD candidate in the <a href="http://dm1.cs.uiuc.edu/">Data Mining Group</a> at UIUC, fortunate to be advised by Prof. <a href="http://hanj.cs.illinois.edu/">Jiawei Han</a>. My PhD journey has included a <a href="https://alignment.anthropic.com/2024/anthropic-fellows-program/">Research Fellowship</a> at Anthropic and internships at Google DeepMind, the Llama 3 Post-Training Team at Meta, Microsoft Azure AI, and Microsoft Research, with generous support from the <a href="https://siebelschool.illinois.edu/news/Amazon-names-Huang-Zhong-inagural-fellows-AICE-research">Amazon PhD Fellowship</a>.
-		</p>
-		<p>
-		My research interests center on AI agents for automated scientific research, and the frontier evaluation and alignment of LLMs.
-		</p>
-        <!-- <b>NEWS</b>:
-          <ul>
-            <li>
-            </li>
-          </ul> -->
-      </div>
-
-      <div class='row'>
-        <hr>
-      </div>
-
-      <div class='row'>
-        <h2>Papers</h2>
-	<p>
-        (* stands for equal contribution.)
-        </p>
-	<h3>2026</h3>
-	<ul style="list-style-type:none">
-	  <li>
-            <div class='paper_title'>
-              <a href="https://arxiv.org/abs/2510.07315">SWE-IF: Aligning Code Evaluation with Human Preference</a>
-            </div>
-            <div class='paper_rest'>
-              <b>Ming Zhong</b>, Xiang Zhou, Ting-Yun Chang, Qingze Wang, Nan Xu, Xiance Si, Dan Garrette, Shyam Upadhyay, Jeremiah Liu, Jiawei Han, Benoit Schillings, Jiao Sun<br/>
-	          ICML 2026 &nbsp;&nbsp; [ <a href="https://arxiv.org/abs/2510.07315">Paper</a> | <a href="https://github.com/maszhongming/SWE-IF">Code</a> | <a href="https://huggingface.co/datasets/MingZhong/SWE-IF">Data</a> ]
-            </div>
       </li>
-	  <li>
-            <div class='paper_title'>
-              <a href="https://arxiv.org/abs/2502.01534">Preference Leakage: A Contamination Problem in LLM-as-a-Judge</a>
-            </div>
-            <div class='paper_rest'>
-              Dawei Li, Renliang Sun, Yue Huang, <b>Ming Zhong</b>, Bohan Jiang, Jiawei Han, Xiangliang Zhang, Wei Wang, Huan Liu<br/>
-			  ICLR 2026 &nbsp;&nbsp; [ <a href="https://arxiv.org/abs/2502.01534">Paper</a> | <a href="https://github.com/David-Li0406/Preference-Leakage">Code</a> ]<br/>
-	      <font color="#FF0000"><b>Best Paper Award</b></font>, DIG-BUGS Workshop at ICML 2025
-            </div>
+      <li class="paper">
+        <div class="venue"><span class="venue-name">TMLR 2024</span></div>
+        <div class="paper-body">
+          <a class="paper-title" href="https://arxiv.org/abs/2402.16843">Multi-LoRA Composition for Image Generation</a>
+          <p class="authors"><b>Ming Zhong</b>, Yelong Shen, Shuohang Wang, Yadong Lu, Yizhu Jiao, Siru Ouyang, Donghan Yu, Jiawei Han, Weizhu Chen</p>
+          <div class="links"><a class="pill t-paper" href="https://arxiv.org/abs/2402.16843"><svg class="ic" aria-hidden="true"><use href="#i-file-text"></use></svg><span>Paper</span></a><a class="pill t-code" href="https://github.com/maszhongming/Multi-LoRA-Composition"><svg class="ic" aria-hidden="true"><use href="#i-github"></use></svg><span>Code</span></a><a class="pill t-project" href="https://maszhongming.github.io/Multi-LoRA-Composition/"><svg class="ic" aria-hidden="true"><use href="#i-globe"></use></svg><span>Project</span></a></div>
+        </div>
       </li>
-	</ul>
-	<h3>2025</h3>
-	<ul style="list-style-type:none">
-	  <li>
-            <div class='paper_title'>
-              <a href="https://honorable-payment-890.notion.site/POLARIS-A-POst-training-recipe-for-scaling-reinforcement-Learning-on-Advanced-ReasonIng-modelS-1dfa954ff7c38094923ec7772bf447a1">POLARIS: A Post-Training Recipe for Scaling Reinforcement Learning on Advanced Reasoning Models</a>
-            </div>
-            <div class='paper_rest'>
-              Chenxin An, Zhihui Xie, Xiaonan Li, Lei Li, Jun Zhang, Shansan Gong, <b>Ming Zhong</b>, Jingjing Xu, Xipeng Qiu, Mingxuan Wang, Lingpeng Kong<br/>
-	      Preprint &nbsp;&nbsp; [ <a href="https://honorable-payment-890.notion.site/POLARIS-A-POst-training-recipe-for-scaling-reinforcement-Learning-on-Advanced-ReasonIng-modelS-1dfa954ff7c38094923ec7772bf447a1">Project Page</a> | <a href="https://github.com/ChenxinAn-fdu/POLARIS">Code</a> | <a href="https://huggingface.co/POLARIS-Project/Polaris-4B-Preview">Models</a> ]
-            </div>
+      <li class="paper">
+        <div class="venue"><span class="venue-name">ACL 2024</span><span class="award">Outstanding Paper Award</span></div>
+        <div class="paper-body">
+          <a class="paper-title" href="https://arxiv.org/abs/2307.11088">L-Eval: Instituting Standardized Evaluation for Long Context Language Models</a>
+          <p class="authors">Chenxin An, Shansan Gong, <b>Ming Zhong</b>, Xingjian Zhao, Mukai Li, Jun Zhang, Lingpeng Kong, Xipeng Qiu</p>
+          <div class="links"><a class="pill t-paper" href="https://arxiv.org/abs/2307.11088"><svg class="ic" aria-hidden="true"><use href="#i-file-text"></use></svg><span>Paper</span></a><a class="pill t-code" href="https://github.com/OpenLMLab/LEval"><svg class="ic" aria-hidden="true"><use href="#i-github"></use></svg><span>Code</span></a></div>
+        </div>
       </li>
-	  <li>
-            <div class='paper_title'>
-              <a href="https://arxiv.org/abs/2409.19951">Law of the Weakest Link: Cross Capabilities of Large Language Models</a>
-            </div>
-            <div class='paper_rest'>
-              <b>Ming Zhong</b>*, Aston Zhang*, Xuewei Wang, Rui Hou, Wenhan Xiong, Chenguang Zhu, Zhengxing Chen, Liang Tan, Chloe Bi, Mike Lewis, Sravya Popuri, Sharan Narang, Melanie Kambadur, Dhruv Mahajan, Sergey Edunov, Jiawei Han, Laurens van der Maaten<br/>
-	      ICLR 2025 &nbsp;&nbsp; [ <a href="https://arxiv.org/abs/2409.19951">Paper</a> | <a href="https://github.com/facebookresearch/llm-cross-capabilities">Code</a> <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/facebookresearch/llm-cross-capabilities?style=social"> | <a href="https://huggingface.co/datasets/MingZhong/crosseval">Dataset</a> | <a href="https://www.llm-cross-capabilities.org/">Project Page</a> ]
-            </div>
+      <li class="paper">
+        <div class="venue"><span class="venue-name">ICLR 2024</span></div>
+        <div class="paper-body">
+          <a class="paper-title" href="https://arxiv.org/abs/2310.11451">Seeking Neural Nuggets: Knowledge Transfer in Large Language Models from a Parametric Perspective</a>
+          <p class="authors"><b>Ming Zhong</b>, Chenxin An, Weizhu Chen, Jiawei Han, Pengcheng He</p>
+          <div class="links"><a class="pill t-paper" href="https://arxiv.org/abs/2310.11451"><svg class="ic" aria-hidden="true"><use href="#i-file-text"></use></svg><span>Paper</span></a><a class="pill t-code" href="https://github.com/maszhongming/ParaKnowTransfer"><svg class="ic" aria-hidden="true"><use href="#i-github"></use></svg><span>Code</span></a><a class="pill t-project" href="https://maszhongming.github.io/ParaKnowTransfer/"><svg class="ic" aria-hidden="true"><use href="#i-globe"></use></svg><span>Project</span></a></div>
+        </div>
       </li>
-	  <li>
-            <div class='paper_title'>
-              <a href="https://arxiv.org/abs/2410.18745">Why Does the Effective Context Length of LLMs Fall Short?</a>
-            </div>
-            <div class='paper_rest'>
-              Chenxin An, Jun Zhang, <b>Ming Zhong</b>, Lei Li, Shansan Gong, Yao Luo, Jingjing Xu, Lingpeng Kong<br/>
-	      ICLR 2025 &nbsp;&nbsp; [ <a href="https://arxiv.org/abs/2410.18745">Paper</a> | <a href="https://github.com/HKUNLP/STRING">Code</a> ]
-            </div>
+      <li class="paper">
+        <div class="venue"><span class="venue-name">EMNLP 2022</span><span class="award">Oral</span></div>
+        <div class="paper-body">
+          <a class="paper-title" href="https://arxiv.org/abs/2210.07197">Towards a Unified Multi-Dimensional Evaluator for Text Generation</a>
+          <p class="authors"><b>Ming Zhong</b>, Yang Liu, Da Yin, Yuning Mao, Yizhu Jiao, Pengfei Liu, Chenguang Zhu, Heng Ji, Jiawei Han</p>
+          <div class="links"><a class="pill t-paper" href="https://arxiv.org/abs/2210.07197"><svg class="ic" aria-hidden="true"><use href="#i-file-text"></use></svg><span>Paper</span></a><a class="pill t-code" href="https://github.com/maszhongming/UniEval"><svg class="ic" aria-hidden="true"><use href="#i-github"></use></svg><span>Code</span></a></div>
+        </div>
       </li>
-	</ul>
-	<h3>2024</h3>
-	<ul style="list-style-type:none">
-	  <li>
-            <div class='paper_title'>
-              <a href="https://arxiv.org/abs/2402.16843">Multi-LoRA Composition for Image Generation</a>
-            </div>
-            <div class='paper_rest'>
-              <b>Ming Zhong</b>, Yelong Shen, Shuohang Wang, Yadong Lu, Yizhu Jiao, Siru Ouyang, Donghan Yu, Jiawei Han, Weizhu Chen<br/>
-	      TMLR &nbsp;&nbsp; [ <a href="https://arxiv.org/abs/2402.16843">Paper</a> | <a href="https://github.com/maszhongming/Multi-LoRA-Composition">Code</a> <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/maszhongming/Multi-LoRA-Composition?style=social"> | <a href="https://maszhongming.github.io/Multi-LoRA-Composition/">Project Page</a> ]
-            </div>
-          </li>
-	  <li>
-            <div class='paper_title'>
-              <a href="https://arxiv.org/abs/2410.10141">Temperature-Centric Investigation of Speculative Decoding with Knowledge Distillation</a>
-            </div>
-            <div class='paper_rest'>
-              Siru Ouyang, Shuohang Wang, Minhao Jiang, <b>Ming Zhong</b>, Donghan Yu, Jiawei Han, Yelong Shen<br/>
-	      EMNLP 2024 Findings &nbsp;&nbsp; [ <a href="https://arxiv.org/abs/2410.10141">Paper</a> | <a href="https://github.com/ozyyshr/TempSpec">Code</a> ]
-            </div>
-          </li>
-	  <li>
-            <div class='paper_title'>
-              <a href="https://www.arxiv.org/abs/2408.08978">See What LLMs Cannot Answer: A Self-Challenge Framework for Uncovering LLM Weaknesses</a>
-            </div>
-            <div class='paper_rest'>
-              Yulong Chen, Yang Liu, Jianhao Yan, Xuefeng Bai, <b>Ming Zhong</b>, Yinghao Yang, Ziyi Yang, Chenguang Zhu, Yue Zhang<br/>
-	      COLM 2024 &nbsp;&nbsp; [ <a href="https://www.arxiv.org/abs/2408.08978">Paper</a> | <a href="https://github.com/cylnlp/Self-Challenge-GPT4">Code</a> ]
-            </div>
-          </li>
-	  <li>
-            <div class='paper_title'>
-              <a href="https://arxiv.org/abs/2408.05457">Investigating Instruction Tuning Large Language Models on Graphs</a>
-            </div>
-            <div class='paper_rest'>
-              Kerui Zhu, Bo-Wei Huang, Bowen Jin, Yizhu Jiao, <b>Ming Zhong</b>, Kevin Chang, Shou-De Lin, Jiawei Han<br/>
-	      COLM 2024 &nbsp;&nbsp; [ <a href="https://arxiv.org/abs/2408.05457">Paper</a> | <a href="https://github.com/ZhuKerui/graph-instruction-tuning">Code</a> ]
-            </div>
-          </li>
-	  <li>
-            <div class='paper_title'>
-              <a href="https://arxiv.org/abs/2307.11088">L-Eval: Instituting Standardized Evaluation for Long Context Language Models</a>
-            </div>
-            <div class='paper_rest'>
-              Chenxin An, Shansan Gong, <b>Ming Zhong</b>, Xingjian Zhao, Mukai Li, Jun Zhang, Lingpeng Kong, Xipeng Qiu<br/>
-	      <font color="#FF0000"><b>Outstanding Paper Award</b></font>, ACL 2024 &nbsp;&nbsp; [ <a href="https://arxiv.org/abs/2307.11088">Paper</a> | <a href="https://github.com/OpenLMLab/LEval">Code</a> ]
-            </div>
-          </li>
-	  <li>
-            <div class='paper_title'>
-              <a href="https://aclanthology.org/2024.acl-long.683/">ActionIE: Action Extraction from Scientific Literature with Programming Languages</a>
-            </div>
-            <div class='paper_rest'>
-              Xianrui Zhong, Yufeng Du, Siru Ouyang, <b>Ming Zhong</b>, Tingfeng Luo, Qirong Ho, Hao Peng, Heng Ji, Jiawei Han<br/>
-	      ACL 2024 &nbsp;&nbsp; [ <a href="https://aclanthology.org/2024.acl-long.683/">Paper</a> | <a href="https://github.com/xianruizhong/ActionIE">Code</a> ]
-            </div>
-          </li>
-	  <li>
-            <div class='paper_title'>
-              <a href="https://arxiv.org/abs/2310.11451">Seeking Neural Nuggets: Knowledge Transfer in Large Language Models from a Parametric Perspective</a>
-            </div>
-            <div class='paper_rest'>
-              <b>Ming Zhong</b>, Chenxin An, Weizhu Chen, Jiawei Han, Pengcheng He<br/>
-	      ICLR 2024 &nbsp;&nbsp; [ <a href="https://arxiv.org/abs/2310.11451">Paper</a> | <a href="https://github.com/maszhongming/ParaKnowTransfer">Code</a> | <a href="https://maszhongming.github.io/ParaKnowTransfer/">Project Page</a> ]
-            </div>
-          </li>
-	  <li>
-            <div class='paper_title'>
-              <a href="https://arxiv.org/abs/2401.06059">Investigating Data Contamination for Pre-training Language Models</a>
-            </div>
-            <div class='paper_rest'>
-              Minhao Jiang, Ken Ziyu Liu, <b>Ming Zhong</b>, Rylan Schaeffer, Siru Ouyang, Jiawei Han, Sanmi Koyejo<br/>
-	      <font color="#FF0000"><b>Best Paper Award</b></font>, DPFM Workshop at ICLR 2024 &nbsp;&nbsp; [ <a href="https://arxiv.org/abs/2401.06059">Paper</a> | <a href="https://github.com/minhaoJ2/contamination_analysis">Code</a> ]
-            </div>
-          </li>	
-	</ul>
-	<h3>2023</h3>
-	<ul style="list-style-type:none">
-  	  <li>
-            <div class='paper_title'>
-              <a href="https://arxiv.org/abs/2305.14327">Dynosaur: a Dynamic Growth Paradigm for Instruction-Tuning Data Curation</a>
-            </div>
-            <div class='paper_rest'>
-              Da Yin*, Xiao Liu*, Fan Yin*, <b>Ming Zhong*</b>, Hritik Bansal, Jiawei Han, Kai-Wei Chang<br/>
-	      EMNLP 2023 &nbsp;&nbsp; [ <a href="https://arxiv.org/abs/2305.14327">Paper</a> | <a href="https://github.com/WadeYin9712/Dynosaur">Code</a> | <a href="https://dynosaur-it.github.io/">Project Page</a> ]
-            </div>
-          </li>
-	  <li>
-            <div class='paper_title'>
-              <a href="https://arxiv.org/abs/2310.16040">Instruct and Extract: Instruction Tuning for On-Demand Information Extraction</a>
-            </div>
-            <div class='paper_rest'>
-              Yizhu Jiao, <b>Ming Zhong</b>, Sha Li, Ruining Zhao, Siru Ouyang, Heng Ji, Jiawei Han<br/>
-	      EMNLP 2023 (Oral) &nbsp;&nbsp; [ <a href="https://arxiv.org/abs/2310.16040">Paper</a> | <a href="https://github.com/yzjiao/On-Demand-IE">Code</a> ]
-            </div>
-          </li>
-	  <li>
-            <div class='paper_title'>
-              <a href="https://arxiv.org/abs/2310.12418">The Shifted and The Overlooked: A Task-oriented Investigation of User-GPT Interactions</a>
-            </div>
-            <div class='paper_rest'>
-              Siru Ouyang, Shuohang Wang, Yang Liu, <b>Ming Zhong</b>, Yizhu Jiao, Dan Iter, Reid Pryzant, Chenguang Zhu, Heng Ji, Jiawei Han<br/>
-	      EMNLP 2023 &nbsp;&nbsp; [ <a href="https://arxiv.org/abs/2310.12418">Paper</a> | <a href="https://github.com/ozyyshr/ShareGPT_investigation">Code</a> ]
-            </div>
-          </li>
-	  <li>
-            <div class='paper_title'>
-              <a href="https://maszhongming.github.io/">Reaction Miner: An Integrated System for Chemical Reaction Extraction from Textual Data</a>
-            </div>
-            <div class='paper_rest'>
-              <b>Ming Zhong</b>, Siru Ouyang, Yizhu Jiao, Priyanka Kargupta, Leo Luo, Yanzhen Shen, Bobby Zhou, Xianrui Zhong, Xuan Liu, Hongxiang Li, Jinfeng Xiao, Minhao Jiang, Vivian Hu, Xuan Wang, Heng Ji, Martin Burke, Huimin Zhao, Jiawei Han<br/>
-	      EMNLP 2023 Demo &nbsp;&nbsp; [ <a href="https://aclanthology.org/2023.emnlp-demo.36/">Paper</a> | <a href="https://github.com/maszhongming/ReactionMiner">Code</a> ]
-            </div>
-          </li>
-	  <li>
-            <div class='paper_title'>
-              <a href="https://arxiv.org/abs/2307.01448">ReactIE: Enhancing Chemical Reaction Extraction with Weak Supervision</a>
-            </div>
-            <div class='paper_rest'>
-              <b>Ming Zhong</b>, Siru Ouyang, Minhao Jiang, Vivian Hu, Yizhu Jiao, Xuan Wang, Jiawei Han<br/>
-	      ACL 2023 Findings, Short Paper &nbsp;&nbsp; [ <a href="https://arxiv.org/abs/2307.01448">Paper</a> ]
-            </div>
-          </li>
-	  <li>
-            <div class='paper_title'>
-              <a href="https://arxiv.org/abs/2307.04018">Revisiting Cross-Lingual Summarization: a Corpus-based Study and a New Benchmark with Improved Annotation</a>
-            </div>
-            <div class='paper_rest'>
-              Yulong Chen, Huajian Zhang, Yijie Zhou, Xuefeng Bai, Yueguan Wang, <b>Ming Zhong</b>, Jianhao Yan, Yafu Li, Judy Li, Xianchao Zhu and Yue Zhang<br/>
-	      ACL 2023 &nbsp;&nbsp; [ <a href="https://arxiv.org/abs/2307.04018">Paper</a> | <a href="https://github.com/cylnlp/ConvSumX">Data</a> ]
-            </div>
-          </li>
-	  <li>
-            <div class='paper_title'>
-              <a href="https://dl.acm.org/doi/abs/10.1145/3543507.3583295">Unsupervised Event Chain Mining from Multiple Documents</a>
-            </div>
-            <div class='paper_rest'>
-              Yizhu Jiao, <b>Ming Zhong</b>, Jiaming Shen, Yunyi Zhang, Chao Zhang, Jiawei Han<br/>
-	      WWW 2023 &nbsp;&nbsp; [ <a href="https://dl.acm.org/doi/abs/10.1145/3543507.3583295">Paper</a> ]
-            </div>
-          </li>
-	  <li>
-            <div class='paper_title'>
-              <a href="https://arxiv.org/abs/2205.02370">PREME: Preference-based Meeting Exploration through an Interactive Questionnaire</a>
-            </div>
-            <div class='paper_rest'>
-              Negar Arabzadeh, Ali Ahmadvand, Julia Kiseleva, Yang Liu, Ahmed Hassan Awadallah, <b>Ming Zhong</b>, Milad Shokouhi<br/>
-	      EACL 2023 Findings &nbsp;&nbsp; [ <a href="https://arxiv.org/abs/2205.02370">Paper</a> | <a href="https://github.com/microsoft/preme">Code</a> ]
-            </div>
-          </li>
-	</ul>
-	<h3>2022</h3>
-	<ul style="list-style-type:none">
-	  <li>
-            <div class='paper_title'>
-              <a href="https://arxiv.org/abs/2210.07197">Towards a Unified Multi-Dimensional Evaluator for Text Generation</a>
-            </div>
-            <div class='paper_rest'>
-              <b>Ming Zhong</b>, Yang Liu, Da Yin, Yuning Mao, Yizhu Jiao, Pengfei Liu, Chenguang Zhu, Heng Ji and Jiawei Han<br/>
-	      EMNLP 2022 (Oral) &nbsp;&nbsp; [ <a href="https://arxiv.org/abs/2210.07197">Paper</a> | <a href="https://github.com/maszhongming/UniEval">Code</a> <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/maszhongming/UniEval?style=social"> ]
-            </div>
-          </li>
-	  <li>
-            <div class='paper_title'>
-              <a href="https://arxiv.org/abs/2205.06207">CiteSum: Citation Text-guided Scientific Extreme Summarization and Low-resource Domain Adaptation</a>
-            </div>
-            <div class='paper_rest'>
-              Yuning Mao, <b>Ming Zhong</b>, Jiawei Han<br/>
-	      EMNLP 2022 &nbsp;&nbsp; [ <a href="https://arxiv.org/abs/2205.06207">Paper</a> | <a href="https://github.com/morningmoni/CiteSum">Code and Data</a> ]
-            </div>
-          </li>
-	  <li>
-            <div class='paper_title'>
-              <a href="https://arxiv.org/abs/2201.05966">UnifiedSKG: Unifying and Multi-Tasking Structured Knowledge Grounding with Text-to-Text Language Models</a>
-            </div>
-            <div class='paper_rest'>
-              Tianbao Xie*, Chen Henry Wu*, Peng Shi, Ruiqi Zhong, Torsten Scholak, Michihiro Yasunaga, Chien-Sheng Wu, <b>Ming Zhong</b>, Pengcheng Yin, Sida I. Wang, Victor Zhong, Bailin Wang, Chengzu Li, Connor Boyle, Ansong Ni, Ziyu Yao, Dragomir Radev, Caiming Xiong, Lingpeng Kong, Rui Zhang, Noah A. Smith, Luke Zettlemoyer, Tao Yu<br/>
-	      EMNLP 2022 (Oral) &nbsp;&nbsp; [ <a href="https://arxiv.org/abs/2201.05966">Paper</a> | <a href="https://github.com/hkunlp/unifiedskg">Code</a> | <a href="https://unifiedskg.com/">Project Page</a> ]
-            </div>
-          </li>
-	  <li>
-            <div class='paper_title'>
-              <a href="https://arxiv.org/abs/2201.12502">Unsupervised Multi-Granularity Summarization</a>
-            </div>
-            <div class='paper_rest'>
-              <b>Ming Zhong</b>, Yang Liu, Suyu Ge, Yuning Mao, Yizhu Jiao, Xingxing Zhang, Yichong Xu, Chenguang Zhu, Michael Zeng, Jiawei Han<br/>
-	      EMNLP 2022 Findings &nbsp;&nbsp; [ <a href="https://arxiv.org/abs/2201.12502">Paper</a> | <a href="https://github.com/maszhongming/GranuDUC">Data</a> ]
-            </div>
-          </li>
-	  <li>
-            <div class='paper_title'>
-              <a href="https://arxiv.org/abs/2211.01577">Open-Vocabulary Argument Role Prediction for Event Extraction</a>
-            </div>
-            <div class='paper_rest'>
-              Yizhu Jiao, Sha Li, Yiqing Xie, <b>Ming Zhong</b>, Heng Ji and Jiawei Han<br/>
-	      EMNLP 2022 Findings &nbsp;&nbsp; [ <a href="https://arxiv.org/abs/2211.01577">Paper</a> | <a href="https://github.com/yzjiao/RolePred">Code</a> ]
-            </div>
-          </li>
-	  <li>
-            <div class='paper_title'>
-              <a href="https://arxiv.org/abs/2109.02492">DialogLM: Pre-trained Model for Long Dialogue Understanding and Summarization</a>
-            </div>
-            <div class='paper_rest'>
-              <b>Ming Zhong</b>, Yang Liu, Yichong Xu, Chenguang Zhu, Michael Zeng<br/>
-	      AAAI 2022 (Oral) &nbsp;&nbsp; [ <a href="https://arxiv.org/abs/2109.02492">Paper</a> | <a href="https://github.com/microsoft/DialogLM">Code</a> <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/microsoft/DialogLM?style=social"> | <a href="https://github.com/maszhongming/DialogLM_data">Dataset</a> ]
-            </div>
-          </li>
-	  <li>
-            <div class='paper_title'>
-              <a href="https://arxiv.org/abs/2209.14569">COLO: A Contrastive Learning Based Re-ranking Framework for One-Stage Summarization</a>
-            </div>
-            <div class='paper_rest'>
-              Chenxin An, <b>Ming Zhong</b>, Zhiyong Wu, Qin Zhu, Xuanjing Huang, Xipeng Qiu<br/>
-	      COLING 2022 &nbsp;&nbsp; [ <a href="https://arxiv.org/abs/2209.14569">Paper</a> | <a href="https://github.com/ChenxinAn-fdu/CoLo">Code</a> ]
-            </div>
-          </li>
-	  <li>
-            <div class='paper_title'>
-              <a href="https://aclanthology.org/2022.coling-1.569">Improving Abstractive Dialogue Summarization with Speaker-Aware Supervised Contrastive Learning</a>
-            </div>
-            <div class='paper_rest'>
-              Zhichao Geng, <b>Ming Zhong</b>, Zhangyue Yin, Xipeng Qiu and Xuanjing Huang<br/>
-	      COLING 2022, Short Paper (Oral) &nbsp;&nbsp; [ <a href="https://aclanthology.org/2022.coling-1.569">Paper</a> ]
-            </div>
-          </li>
-	  <li>
-            <div class='paper_title'>
-              <a href="https://arxiv.org/abs/2205.00379">The Cross-lingual Conversation Summarization Challenge</a>
-            </div>
-            <div class='paper_rest'>
-              Yulong Chen*, <b>Ming Zhong</b>*, Xuefeng Bai*, Naihao Deng, Jing Li, Xianchao Zhu, Yue Zhang<br/>
-	      INLG 2022 &nbsp;&nbsp; [ <a href="https://arxiv.org/abs/2205.00379">Paper</a> ]
-            </div>
-          </li>
-	</ul>
-	<h3>2021</h3>
-	<ul style="list-style-type:none">
-          <li>
-            <div class='paper_title'>
-              <a href="https://arxiv.org/abs/2104.05938">QMSum: A New Benchmark for Query-based Multi-domain Meeting Summarization</a>
-            </div>
-            <div class='paper_rest'>
-              <b>Ming Zhong</b>*, Da Yin*, Tao Yu, Ahmad Zaidi, Mutethia Mutuma, Rahul Jha, Ahmed Hassan Awadallah, Asli Celikyilmaz, Yang Liu, Xipeng Qiu, Dragomir Radev<br/>
-              NAACL 2021 (Oral) &nbsp;&nbsp; [ <a href="https://arxiv.org/abs/2104.05938">Paper</a> | <a href="https://github.com/Yale-LILY/QMSum">Dataset</a> <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/Yale-LILY/QMSum?style=social"> ]
-            </div>
-          </li>
-          <li>
-            <div class='paper_title'>
-              <a href="https://arxiv.org/abs/2104.03057">Enhancing Scientific Papers Summarization with Citation Graph</a>
-            </div>
-            <div class='paper_rest'>
-              Chenxin An, <b>Ming Zhong</b>, Yiran Chen, Danqing Wang, Xipeng Qiu, Xuanjing Huang<br/>
-              AAAI 2021 &nbsp;&nbsp; [ <a href="https://arxiv.org/abs/2104.03057">Paper</a> | <a href="https://github.com/ChenxinAn-fdu/CGSum">Code</a> | <a href="https://github.com/ChenxinAn-fdu/CGSum">Dataset</a> ]
-            </div>
-          </li>
-          <li>
-            <div class='paper_title'>
-              <a href="https://arxiv.org/abs/2109.07943">RetrievalSum: A Retrieval Enhanced Framework for Abstractive Summarization</a>
-            </div>
-            <div class='paper_rest'>
-	      Chenxin An, <b>Ming Zhong</b>, Zhichao Geng, Jianqiang Yang, Xipeng Qiu<br/>
-              arXiv 2021 &nbsp;&nbsp; [ <a href="https://arxiv.org/abs/2109.07943">Paper</a> ]
-            </div>
-          </li>
-	</ul>
-	<h3>2020</h3>
-	<ul style="list-style-type:none">
-          <li>
-            <div class='paper_title'>
-              <a href="https://arxiv.org/abs/2004.08795">Extractive Summarization as Text Matching</a>
-            </div>
-            <div class='paper_rest'>
-              <b>Ming Zhong</b>*, Pengfei Liu*, Yiran Chen, Danqing Wang, Xipeng Qiu, Xuanjing Huang<br/>
-              ACL 2020 &nbsp;&nbsp; [ <a href="https://arxiv.org/abs/2004.08795">Paper</a> | <a href="https://github.com/maszhongming/MatchSum">Code</a> <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/maszhongming/MatchSum?style=social"> ]
-            </div>
-          </li>
-          <li>
-            <div class='paper_title'>
-              <a href="https://arxiv.org/abs/2010.05139">CDEvalSumm: An Empirical Study of Cross-Dataset Evaluation for Neural Summarization Systems</a>
-            </div>
-            <div class='paper_rest'>
-              Yiran Chen*, Pengfei Liu*, <b>Ming Zhong</b>, Zi-Yi Dou, Danqing Wang, Xipeng Qiu, Xuanjing Huang<br/>
-              EMNLP 2020 Findings &nbsp;&nbsp; [ <a href="https://arxiv.org/abs/2010.05139">Paper</a> | <a href="https://github.com/zide05/CDEvalSumm">Code</a> ]
-            </div>
-          </li>
-	</ul>
-	<h3>2019</h3>      
-	<ul style="list-style-type:none">
-          <li>
-            <div class='paper_title'>
-              <a href="https://arxiv.org/abs/1907.03491">Searching for Effective Neural Extractive Summarization: What Works and What's Next</a>
-            </div>
-            <div class='paper_rest'>
-              <b>Ming Zhong</b>*, Pengfei Liu*, Danqing Wang, Xipeng Qiu, Xuanjing Huang<br/>
-              ACL 2019 (Oral) &nbsp;&nbsp; [ <a href="https://arxiv.org/abs/1907.03491">Paper</a> | <a href="https://github.com/maszhongming/Effective_Extractive_Summarization">Code</a> <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/maszhongming/Effective_Extractive_Summarization?style=social"> ]
-            </div>
-          </li>
-          <li>
-            <div class='paper_title'>
-              <a href="https://arxiv.org/abs/1909.13705">A Closer Look at Data Bias in Neural Extractive Summarization Models</a>
-            </div>
-            <div class='paper_rest'>
-              <b>Ming Zhong</b>*, Danqing Wang*, Pengfei Liu*, Xipeng Qiu, Xuanjing Huang<br/>
-	      EMNLP 2019 Workshop on New Frontiers in Summarization &nbsp;&nbsp; [ <a href="https://arxiv.org/abs/1909.13705">Paper</a> ]
-            </div>
-          </li>
-          <li>
-            <div class='paper_title'>
-              <a href="https://arxiv.org/abs/1908.11664">Exploring Domain Shift in Extractive Text Summarization</a>
-            </div>
-            <div class='paper_rest'>
-	      Danqing Wang*, Pengfei Liu*, <b>Ming Zhong</b>, Jie Fu, Xipeng Qiu, Xuanjing Huang<br/>
-	      arXiv 2019 &nbsp;&nbsp; [ <a href="https://arxiv.org/abs/1908.11664">Paper</a> ]
-            </div>
-          </li>
-        </ul>
-      </div>
-      <br>
-      <div class='row'>
-        <hr>
-      </div>
+      </ul>
+      <p class="more">The full list is on <a href="https://scholar.google.com/citations?user=mnifqeUAAAAJ&hl=en">Google Scholar</a>.</p>
+    </section>
+  </main>
 
-    </div>
-    <div class='col-xs-1'>
-    </div>
-  </div>
-
+  <footer>Last updated October 2026</footer>
+</div>
 
 </body>
 </html>
-
-<!-- Localized -->
